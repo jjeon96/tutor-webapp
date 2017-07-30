@@ -59,7 +59,7 @@ COURSE_CHOICES = (
     ('CENS', 'Central, Eastern and Northern European Studies'),
     ('CHBE', 'Chemical and Biological Engineering'),
     ('CHEM', 'Chemistry'),
-    'CHIL', "Children's Literature"
+    ('CHIL', "Children's Literature"),
     ('CHIN', 'Chinese'),
     ('CICS', 'Computing Information and Cognitive Systems'),
     ('CIVL', 'Civil Engineering'),

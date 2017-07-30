@@ -2,7 +2,6 @@ from django.db import models
 from .course_list import COURSE_CHOICES
 from django.utils import timezone
 
-
 # Create your models here.
 
 YEAR_CHOICES = (
@@ -11,6 +10,7 @@ YEAR_CHOICES = (
     ('3', '3'),
     ('4', '4'),
 )
+
 
 class Post(models.Model):
     name = models.CharField(max_length=100)
