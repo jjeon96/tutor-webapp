@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div>
-        {{ post.start_at }}
-        {{ post.end_at }}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Created at: {{ post.created_at }}
+        </div>
+        <div class="panel-body">
+            Name: {{ post.name }}<br>
+            Year: {{ post.year }}<br>
+            Course: {{ post.course_name }} {{ post.course_number }}<br>
+            Start At: {{ post.start_at }}<br>
+            End At: {{ post.end_at }}<br>
+        </div>
     </div>
 {% endblock %}

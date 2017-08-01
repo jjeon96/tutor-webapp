@@ -4,17 +4,10 @@ from django.utils import timezone
 
 # Create your models here.
 
-YEAR_CHOICES = (
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-)
-
 
 class Post(models.Model):
     name = models.CharField(max_length=100)
-    year = models.CharField(max_length=1, choices=YEAR_CHOICES)
+    year = models.CharField(max_length=1, choices=tuple((str(x), str(x)) for x in range(1,5)))
     course_name = models.CharField(max_length=50, choices=COURSE_CHOICES)
     course_number = models.IntegerField()
     start_at = models.DateTimeField(default=timezone.now)
