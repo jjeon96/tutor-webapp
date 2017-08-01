@@ -8,8 +8,7 @@ from accounts.views import (login_view, register_view, logout_view)
 from . import views
 
 urlpatterns = [
-    
-    url(r'^admin/', admin.site.urls),
+
     # url(r'^comments/', include("comments.urls", namespace='comments')),
     
     url(r'^register/', register_view, name='register'),
@@ -18,5 +17,6 @@ urlpatterns = [
     # url(r'^', include("posts.urls", namespace='posts')),
     #url(r'^posts/$', "<appname>.views.<function_name>"),
 
-    url(r'^$', views.post_list, name='post_list')
+    url(r'^$', views.post_list, name='post_list'),
+    url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
 ]
