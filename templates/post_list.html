@@ -2,8 +2,31 @@
 
 {% block content %}
     <div>
-        {% for post in posts %}
-            <h1><a href="{% url 'post_detail' pk=post.pk %}"> {{ post }}</a></h1>
-        {% endfor %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Created Date</th>
+                <th>Course</th>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Username</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                <td>{{ post.created_at }}</td>
+                <td>{{ post.course_name }} {{ post.course_number }}</td>
+                <td>{{ post.name }}</td>
+                <td>{{ post.year }}</td>
+                <td> n/a </td>
+                <td><a href="{% url 'post_detail' pk=post.pk %}"> Detail </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
+    <a class="btn btn-default" href="{% url 'post_filter' %}">Filter</a>
+    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 {% endblock %}
