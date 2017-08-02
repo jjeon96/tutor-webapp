@@ -7,11 +7,12 @@ from django.utils import timezone
 
 class Post(models.Model):
     name = models.CharField(max_length=100)
-    year = models.CharField(max_length=1, choices=tuple((str(x), str(x)) for x in range(1,5)))
+    year = models.CharField(max_length=1, choices=tuple((str(x), str(x)) for x in range(1, 5)))
     course_name = models.CharField(max_length=50, choices=COURSE_CHOICES)
     course_number = models.IntegerField()
     start_at = models.DateTimeField(default=timezone.now)
     end_at = models.DateTimeField(default=timezone.now)
+    comment = models.CharField(max_length=200, default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
