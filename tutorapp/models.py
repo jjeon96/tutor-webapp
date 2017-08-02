@@ -1,8 +1,5 @@
 from django.db import models
-<<<<<<< HEAD
-=======
 from .course_list import COURSE_CHOICES
->>>>>>> 80d5c5a4ba28950936b512554b4ed3e88440f447
 from django.utils import timezone
 
 # Create your models here.
