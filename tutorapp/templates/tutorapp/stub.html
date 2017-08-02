@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang = "en">
+<head>
+	 <title>tutor app</title>
+	 <meta charset = "utf-8">   <!-- correct charcter set -->
+	 <meta name = "viewport" content = "width=devide-width, initial-scale=1"> <!--responsive to mobile devices ; set width of page to follow screen width of device, set initial zoom level when page first loaded-->
+	 
+
+	 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+     <link rel="stylesheet" href="{% static 'css/stub.css' %}">
+
+     <link href="https://fonts.googleapis.com/css?family=Glass+Antiqua|Josefin+Sans:300|Questrial|Jura:300|Raleway:300" rel="stylesheet">
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-->
+</head>
+
+
+<body>
+
+	
+   
+	<img id = "ques" src = "../../static/css/ques.png" alt="sometext">
+	<img id = "ques2" src = "../../static/css/ques.png" alt="sometext">
+	<img id = "ques3" src = "../../static/css/ques.png" alt="sometext">
+	<img id = "exc" src = "../../static/css/exc.png" alt="sometext">
+
+	<div id = "rectangle-left"> </div>
+		
+	<div class ="Title">
+			<h1> tutor </br>   app </h1>
+		</div>
+			
+	<div class = "container-fluid">		
+			<div class = "row">
+
+				<div id = "custom-search">
+
+					<div class = "input-group"> <!-- col-md-3 -->
+
+						<input id="search" type="text" class="form-control" name="search" placeholder="Search     'ex. CPSC'">
+
+						<span class ="input-group-btn"> 
+							<button class = "btn btn-Danger" type="button">
+								<span class = "glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+
+						
+						
+
+
+			<div class = "buttons">
+				<div id = "btn-login">
+					<a href="/login" class="button" > <span> login </span></a>
+				</div>
+			    
+
+				<div id = "btn-register">
+					<a href="/register" class="button" > <span> register </span></a>
+				</div>
+
+		
+			</div>
+		</div>
+
+	
+
+</body>
+</html>
