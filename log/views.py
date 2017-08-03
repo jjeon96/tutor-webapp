@@ -14,7 +14,7 @@ from django.contrib.auth import (
 
     )
 from django.shortcuts import render, redirect
-from .forms import UserLoginForm, UserRegisterForm
+from .forms import UserLoginForm, UserRegisterForm, ProfileRegistrationFrom
 
 # @login_required(login_url="login/")
 # def home(request):
@@ -36,21 +36,26 @@ def login_view(request):
 def register_view(request):
     print(request.user.is_authenticated())
     title = "Register"
-    form = UserRegisterForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        password = form.cleaned_data.get('password')
+    user_form = UserRegisterForm(request.POST or None)
+    profile_form = ProfileRegistrationFrom(request.POST or None)
+    if user_form.is_valid() and profile_form.is_valid():
+        user = user_form.save(commit=False)
+        password = user_form.cleaned_data.get('password')
         user.set_password(password)
         user.save()
+        profile = profile_form.save(commit= False)
+        profile.user = user
+        profile_form.save()
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
         return redirect("/")
 
     context = {
-        "form": form,
+        "user_form": user_form,
+        "profile_form": profile_form,
         "title": title
     }
-    return render(request, "form.html", context)
+    return render(request, "register.html", context)
 
 
 def logout_view(request):

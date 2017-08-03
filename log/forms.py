@@ -8,6 +8,9 @@
 #     password = forms.CharField(label="Password", max_length=30, 
 #                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'password'}))
 from django import forms
+from tutorapp.course_list import COURSE_CHOICES
+from .models import UserProfile
+from tutorapp.year_level import YEAR_LEVEL
 from django.contrib.auth import (
     authenticate,
     get_user_model,
@@ -25,10 +28,7 @@ class UserLoginForm(forms.Form):
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get("username")
         password = self.cleaned_data.get("password")
-       
-        # user_qs = User.objects.filter(username=username)
-        # if user_qs.count() == 1:
-        #     user = user_qs.first()
+             
         if username and password:
             user = authenticate(username=username, password=password)
             if not user:
@@ -44,6 +44,7 @@ class UserRegisterForm(forms.ModelForm):
     email = forms.EmailField(label='Email address')
     email2 = forms.EmailField(label='Confirm Email')
     password = forms.CharField(widget=forms.PasswordInput)
+    
 
     class Meta:
         model = User
@@ -51,7 +52,8 @@ class UserRegisterForm(forms.ModelForm):
             'username',
             'email',
             'email2',
-            'password'
+            'password',
+            
         ]
 
     def clean_email2(self):
@@ -63,3 +65,28 @@ class UserRegisterForm(forms.ModelForm):
         if email_qs.exists():
             raise forms.ValidationError("This email has already been registered")
         return email
+
+class ProfileRegistrationFrom(forms.ModelForm):
+    major = forms.CharField(widget=forms.Select(choices=COURSE_CHOICES))
+    year_level = forms.CharField(widget=forms.Select(choices=YEAR_LEVEL))
+
+    class Meta:
+        model = UserProfile
+        fields = [
+            'major',
+            'year_level'
+        ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
