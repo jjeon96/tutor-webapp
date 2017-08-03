@@ -28,6 +28,10 @@ label {
 	width: 25% 
 }
 
+select {
+	color: black;
+}
+
 /*.register-form #id_email, .register-form #id_email2, .register-form #id_password{
 	margin-right: 50%;
 }
