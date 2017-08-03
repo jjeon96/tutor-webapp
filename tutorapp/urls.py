@@ -17,19 +17,11 @@ from . import views
 
 
 urlpatterns = [
-# <<<<<<< HEAD
-#     url(r'^$', views.stub, name='stub'),
-#     url(r'^post_list$', views.post_list, name='post_list'),
-#     url(r'^register$', views.register, name='register'),
-#     url(r'^login$',views.login,name='login'),
-#     url(r'^omfg$', views.omfg, name ='omfg'),
-# =======
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
     url(r'^register/', register_view, name='register'),
     url(r'^login/', login_view, name='login'),
     url(r'^logout/', logout_view, name='logout'),
-# >>>>>>> 80d5c5a4ba28950936b512554b4ed3e88440f447
 ]
 
 # if settings.DEBUG:
