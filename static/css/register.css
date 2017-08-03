@@ -1,0 +1,46 @@
+h1{
+	font-family: "Poiret One", "Questrial", "Arial", "sans-serif";
+}
+
+hr{
+	margin-bottom: 0;
+}
+
+.form-group{
+	margin:0;
+	padding-top: 21px;
+    padding-bottom: 0;
+    padding-left: 15px;
+
+}
+.content{
+
+	border-left: 1px solid white;
+
+}
+
+input {
+	color: black;
+	
+}
+
+label {
+	width: 25% 
+}
+
+/*.register-form #id_email, .register-form #id_email2, .register-form #id_password{
+	margin-right: 50%;
+}
+*/
+.RegisterTitle{
+	text-align: right;
+	color: LightCoral;
+}
+
+.register-form .btn{
+	background-color: transparent;
+	border: 8px solid SpringGreen;
+
+
+}
+

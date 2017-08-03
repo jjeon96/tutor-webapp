@@ -29,7 +29,8 @@ def login_view(request):
         password = form.cleaned_data.get('password')
         user = authenticate(username=username, password=password)
         login(request, user)
-        return render(request,"home.html")
+        return redirect('/')
+        # return render(request,"home.html")
     return render(request, "login.html", {"form":form, "title": title})
 
 
