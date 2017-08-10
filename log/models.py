@@ -41,4 +41,3 @@ class UserProfile(models.Model):
 
 
 
-			

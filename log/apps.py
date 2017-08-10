@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class LogConfig(AppConfig):
+class AccountsConfig(AppConfig):
     name = 'log'

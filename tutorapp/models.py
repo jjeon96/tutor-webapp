@@ -4,26 +4,20 @@ from django.utils import timezone
 
 # Create your models here.
 
-YEAR_CHOICES = (
-    ('1', '1'),
-    ('2', '2'),
-    ('3', '3'),
-    ('4', '4'),
-)
-
 
 class Post(models.Model):
     name = models.CharField(max_length=100)
-    year = models.CharField(max_length=1, choices=YEAR_CHOICES)
+    year = models.CharField(max_length=1, choices=tuple((str(x), str(x)) for x in range(1, 5)))
     course_name = models.CharField(max_length=50, choices=COURSE_CHOICES)
     course_number = models.IntegerField()
-    available_date = models.DateField(default=timezone.now)
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
+    start_at = models.DateTimeField(default=timezone.now)
+    end_at = models.DateTimeField(default=timezone.now)
+    comment = models.CharField(max_length=200, default="")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def publish(self):
-        self.published_date = timezone.now()
         self.save()
 
     def __str__(self):
-        return "Date: " + str(self.created_date.date()) + " " + self.name + " Year:" + str(self.year)
+        return "Date: " + str(self.created_at.date()) + " " + self.name + " Year:" + str(self.year)
