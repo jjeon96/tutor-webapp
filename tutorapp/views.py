@@ -29,7 +29,7 @@ def post_detail(request, pk):
 
 def post_filter(request):
     posts = Post.objects.all()
-    # Shoud do something with query
+    #TODO: Shoud do something with query
     temp_posts = posts.filter(course_name='CPSC').order_by('-created_at', '-year')
     return render(request, 'post_list.html', {'posts': temp_posts})
 
