@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm
+from log.models import UserProfile
 import random
 from django.utils import timezone
 
@@ -40,9 +41,11 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             # TODO: FOLLOWINGS SHOULD BE USER LOGGED IN
-            post.name = request.user
+            post.username = request.user
             # TODO: RANDOM BY DEFAULT
-            post.year = random.randrange(1, 5)
+            curr_user = UserProfile.objects.get(user=request.user)
+            post.year = curr_user.year_level
+            post.major = curr_user.major
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
