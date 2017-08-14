@@ -31,9 +31,9 @@ html{
 }
 
 .panel-default>.panel-heading {
-  
+
   background-color: transparent;
-  
+
 
 }
 
@@ -52,7 +52,7 @@ html{
 
 .panel-body{
 	border-left: 1px solid white;
-	
+
 
 }
 /*.bs-component1{
@@ -68,7 +68,7 @@ html{
 
 .Title h1{
 
-	
+
 	font-family: "Poiret One","Questrial", "Arial", "sans-serif";
 	z-index: -1;
 	opacity: 0.5;
@@ -76,5 +76,9 @@ html{
 	left:0;
 	font-size: 15em;
 	color: white;
+}
+
+.navbar-nav {
+	display: initial; !important;
 }
 
