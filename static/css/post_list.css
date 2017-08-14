@@ -1,0 +1,27 @@
+table #post_table{
+
+}
+
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: brown;
+}
+
+
+
+#post_table tr {
+	border-bottom: 1px solid white;
+}
+
+#addclass{
+	
+	float: right;
+	margin-right: 20px;
+	font-size:15px;
+}
+
+
+
+#button_filter {
+    margin-left: 20px;
+}
