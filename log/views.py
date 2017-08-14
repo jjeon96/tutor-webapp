@@ -15,6 +15,9 @@ from django.contrib.auth import (
     )
 from django.shortcuts import render, redirect
 from .forms import UserLoginForm, UserRegisterForm, ProfileRegistrationFrom
+from django.core.mail import send_mail 
+from django.http import HttpResponse
+from django.core.mail import EmailMessage
 
 # @login_required(login_url="login/")
 # def home(request):
@@ -46,7 +49,9 @@ def register_view(request):
         user.save()
         profile = profile_form.save(commit= False)
         profile.user = user
+        
         profile_form.save()
+        sendSimpleEmail(request, user.email)
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
         return redirect("/")
@@ -62,3 +67,18 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect("/login")
+
+
+def sendSimpleEmail(request,emailto):
+	#send_mail('Subject here','Here is the message.','from@example.com',['to@example.com'])
+    res = send_mail("Thank you for joining MentorUs!", "Thanks", "donotrespond.mentor.us@gmail.com",[emailto])
+    return HttpResponse('%s'%res)
+
+
+
+
+
+
+
+
+
