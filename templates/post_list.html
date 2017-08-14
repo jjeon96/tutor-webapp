@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {% if message %}
+        <div class=""><p>{{ message }}</p></div>
+    {% endif %}
     <div>
         <table class="table table-striped">
             <thead>

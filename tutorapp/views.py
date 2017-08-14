@@ -24,8 +24,12 @@ def post_list(request):
 
 
 def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'post_detail.html', {'post': post})
+    if request.user.pk is None:
+        posts = Post.objects.all()
+        return render(request, 'post_list.html', {'message': "Please Login or Register to look at details of the Post",'posts': posts})
+    else:
+        post = get_object_or_404(Post, pk=pk)
+        return render(request, 'post_detail.html', {'post': post})
 
 
 def post_filter(request):
@@ -36,20 +40,24 @@ def post_filter(request):
 
 
 def post_new(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            # TODO: FOLLOWINGS SHOULD BE USER LOGGED IN
-            post.username = request.user
-            # TODO: RANDOM BY DEFAULT
-            curr_user = UserProfile.objects.get(user=request.user)
-            post.year = curr_user.year_level
-            post.major = curr_user.major
-            post.save()
-            return redirect('post_detail', pk=post.pk)
+    if not request.user.pk is None:
+        if request.method == "POST":
+            form = PostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                # TODO: FOLLOWINGS SHOULD BE USER LOGGED IN
+                post.username = request.user
+                # TODO: RANDOM BY DEFAULT
+                curr_user = UserProfile.objects.get(user=request.user)
+                post.year = curr_user.year_level
+                post.major = curr_user.major
+                post.save()
+                return redirect('post_detail', pk=post.pk)
+        else:
+            form = PostForm()
     else:
-        form = PostForm()
+        posts = Post.objects.all()
+        return render(request, 'post_list.html', {'message': "Please Login or Register to create new posts",'posts': posts})
     return render(request, 'post_edit.html', {'form': form})
 
 def home(request):
