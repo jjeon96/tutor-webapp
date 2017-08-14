@@ -1,11 +1,3 @@
-# from django.shortcuts import render
-# from django.contrib.auth.decorators import login_required
-
-# # Create your views here.
-# # this login required decorator is to not allow to any  
-# # view without authenticating
-
-
 from django.contrib.auth import (
     authenticate,
     get_user_model,
@@ -24,6 +16,8 @@ from django.core.mail import EmailMessage
 #     return render(request,"home.html")
 
 def login_view(request):
+    if request.user.pk:
+        return redirect('/')
     print(request.user.is_authenticated())
     title = "Login"
     form = UserLoginForm(request.POST or None)
@@ -38,30 +32,33 @@ def login_view(request):
 
 
 def register_view(request):
-    print(request.user.is_authenticated())
-    title = "Register"
-    user_form = UserRegisterForm(request.POST or None)
-    profile_form = ProfileRegistrationFrom(request.POST or None)
-    if user_form.is_valid() and profile_form.is_valid():
-        user = user_form.save(commit=False)
-        password = user_form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        profile = profile_form.save(commit= False)
-        profile.user = user
-        
-        profile_form.save()
-        sendSimpleEmail(request, user.email)
-        new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
-        return redirect("/")
+    if request.user.pk:
+        return redirect('/')
+    else:
+        print(request.user.is_authenticated())
+        title = "Register"
+        user_form = UserRegisterForm(request.POST or None)
+        profile_form = ProfileRegistrationFrom(request.POST or None)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save(commit=False)
+            password = user_form.cleaned_data.get('password')
+            user.set_password(password)
+            user.save()
+            profile = profile_form.save(commit= False)
+            profile.user = user
 
-    context = {
-        "user_form": user_form,
-        "profile_form": profile_form,
-        "title": title
-    }
-    return render(request, "register.html", context)
+            profile_form.save()
+            sendSimpleEmail(request, user.email)
+            new_user = authenticate(username=user.username, password=password)
+            login(request, new_user)
+            return redirect("/")
+
+        context = {
+            "user_form": user_form,
+            "profile_form": profile_form,
+            "title": title
+        }
+        return render(request, "register.html", context)
 
 
 def logout_view(request):
@@ -70,7 +67,7 @@ def logout_view(request):
 
 
 def sendSimpleEmail(request,emailto):
-	#send_mail('Subject here','Here is the message.','from@example.com',['to@example.com'])
+	#   send_mail('Email Title','Email Message','from@example.com',['to@example.com'])
     res = send_mail("Thank you for joining MentorUs!", "Thanks", "donotrespond.mentor.us@gmail.com",[emailto])
     return HttpResponse('%s'%res)
 
