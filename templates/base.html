@@ -72,17 +72,8 @@
     {% block content %}
     {% endblock %}
 
-{% block javascript %}
-{% endblock %}
-    {% if not user.pk is None %}
-        <h2>{{ user.get_full_name }}</h2>
-        <ul>
-            <li>Username: {{ user.username }}</li>
-            <li>Year level: {{ user.userprofile.year_level }}</li>
-            <li>Full Name: {{ user.get_full_name }}</li>
-            <li>Major: {{ user.userprofile.major }}</li>
-            <li>Rating: {{ user.userprofile.rating }}</li>
-        </ul>
-    {% endif %}    
+    {% block javascript %}
+    {% endblock %}
+
     </body>
 </html>
