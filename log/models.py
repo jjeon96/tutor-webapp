@@ -4,6 +4,8 @@ from tutorapp.course_list import COURSE_CHOICES
 from tutorapp.year_level import YEAR_LEVEL
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 #user_profile_id = models.AutoField(primary_key = True)
 # Create your models here.
@@ -14,6 +16,9 @@ class UserProfile(models.Model):
     major = models.CharField(max_length=20, choices=COURSE_CHOICES,
                              default='CPSC')
     year_level = models.IntegerField(choices=YEAR_LEVEL, default=1)
+    rating = models.DecimalField(max_digits=5, decimal_places=2, default=0.00,validators=[MinValueValidator(0.00), MaxValueValidator(10.00)])
+    number_of_votes = models.IntegerField(default = 0)
+
     # user_profile_id = models.AutoField(primary_key = True)
 
     def update_profile(request, user_id):
