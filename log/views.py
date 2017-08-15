@@ -42,7 +42,11 @@ def register_view(request):
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save(commit=False)
             password = user_form.cleaned_data.get('password')
+            first_name = user_form.cleaned_data.get('first_name')
+            last_name = user_form.cleaned_data.get('last_name')
             user.set_password(password)
+            user.first_name = first_name
+            user.last_name = last_name
             user.save()
             profile = profile_form.save(commit= False)
             profile.user = user

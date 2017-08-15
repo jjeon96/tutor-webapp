@@ -10,9 +10,9 @@
             <tr>
                 <th>Created Date</th>
                 <th>Course</th>
-                <th>Name</th>
+                <th>User Name</th>
                 <th>Year</th>
-                <th>Username</th>
+                <th>Name</th>
                 <th>Details</th>
             </tr>
             </thead>
@@ -23,7 +23,8 @@
                 <td>{{ post.course_name }} {{ post.course_number }}</td>
                 <td>{{ post.username }}</td>
                 <td>{{ post.year }}</td>
-                <td> n/a </td>
+                <td>n/a</td>
+{#                <td>{{ post.user.get_fullname }}</td>#}
                 <td><a href="{% url 'post_detail' pk=post.pk %}"> Detail </a></td>
                 </tr>
             {% endfor %}
