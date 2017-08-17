@@ -6,10 +6,11 @@ from django.contrib.auth import (
 
     )
 from django.shortcuts import render, redirect
-from .forms import UserLoginForm, UserRegisterForm, ProfileRegistrationFrom
+from .forms import UserLoginForm, UserRegisterForm, ProfileRegistrationFrom, UserEditForm, ProfileEditForm
 from django.core.mail import send_mail 
 from django.http import HttpResponse
 from django.core.mail import EmailMessage
+from log.models import UserProfile
 
 # @login_required(login_url="login/")
 # def home(request):
@@ -76,6 +77,44 @@ def sendSimpleEmail(request,emailto):
     return HttpResponse('%s'%res)
 
 
+def update_view(request):
+    if request.user.pk is None:
+        return redirect('/')
+    else:
+        profile_user = UserProfile.objects.get(user=request.user)
+        user_edit_form = UserEditForm(request.POST or None,
+                                      initial={'first_name': request.user.first_name,
+                                               'last_name':request.user.last_name, 'email':request.user.email})
+        profile_edit_form = ProfileEditForm(request.POST or None, initial={'major':profile_user.major, 'year_level':profile_user.year_level})
+        if user_edit_form.is_valid() and profile_edit_form.is_valid():
+            # user_name = user_edit_form.cleaned_data.get('username')
+            user = user_edit_form.save(commit=False)
+            first_name = user_edit_form.cleaned_data.get('first_name')
+            last_name = user_edit_form.cleaned_data.get('last_name')
+            email = user_edit_form.cleaned_data.get('email')
+            # if (user_name != request.user.username) :
+            #     request.user.username = user_name
+            if (request.user.email != email):
+                request.user.email = email
+
+            request.user.first_name = first_name
+            request.user.last_name = last_name
+            profile_user.major = profile_edit_form.cleaned_data.get('major')
+            profile_user.year_level = profile_edit_form.cleaned_data.get('year_level')
+
+            request.user.save()
+            profile_user.save()
+
+            new_user = authenticate(username=request.user.username, password=request.user.password)
+            login(request, new_user)
+            return redirect('/')
+
+        context = {
+            "user_edit_form": user_edit_form,
+            "profile_edit_form": profile_edit_form,
+            "title": "Edit Profile"
+        }
+    return render(request, "updateProfile.html", context)
 
 
 

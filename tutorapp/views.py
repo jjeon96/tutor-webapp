@@ -14,6 +14,8 @@ def stub(request):
 def login(request):
     return render(request, 'tutorapp/login.html', {})
 
+def update(request):
+    return render(request, 'updateProfile.html', {})
 
 # def logout(request):
 # 	return render(request, 'tutorapp/stub.html', {})
