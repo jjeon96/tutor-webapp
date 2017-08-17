@@ -1,4 +1,4 @@
-
+{% extends "base.html" %}
 
 {% block content %}
     <div class="panel panel-default">
@@ -6,7 +6,8 @@
             Created at: {{ post.created_at }}
         </div>
         <div class="panel-body">
-            Name: {{ post.username }}<br>
+            UserName: {{ post.username }}<br>
+            Name: {{ post.name }}<br>
             Year: {{ post.year }}<br>
             Course: {{ post.course_name }} {{ post.course_number }}<br>
             Start At: {{ post.start_at }}<br>
@@ -14,4 +15,5 @@
             Comment: {{ post.comment }} <br>
         </div>
     </div>
+    <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-info btn-lg" id="editclass"><span class="glyphicon glyphicon-pencil"></span> edit class </a>
 {% endblock %}

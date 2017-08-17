@@ -19,8 +19,11 @@ urlpatterns = [
 
     url(r'^post/$', views.post_list, name='post_list'),
     url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
-    url(r'^filter/$', views.post_filter, name='post_filter'),
+    url(r'^my_post/$', views.my_post, name='my_post'),
     url(r'^post/new/$', views.post_new, name='post_new'),
+    url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
+    url(r'^search/$', views.post_search, name='post_search'),
+    url(r'^\?q=(?P<query_search>\w+)$', views.search_result, name='search_result'),
     # url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
 

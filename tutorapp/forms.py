@@ -18,5 +18,10 @@ class SearchForm(forms.ModelForm):
     # TODO: Search form must be specified
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ('course_name', 'course_number',)
+
+    # def __init__(self, *args, **kwargs):
+    #     super(SearchForm, self).__init__(*args, **kwargs)
+    #     for field_name, field in self.fields.items():
+    #         field.widget.attrs['class'] = 'form-group'
 
