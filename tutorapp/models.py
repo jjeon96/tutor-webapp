@@ -7,6 +7,7 @@ from django.utils import timezone
 
 class Post(models.Model):
 
+
     username = models.CharField(max_length=100)
     name = models.CharField(max_length=100, default="Not specified")
     year = models.CharField(max_length=1, choices=tuple((str(x), str(x)) for x in range(1, 5)))
