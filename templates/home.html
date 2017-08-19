@@ -2,22 +2,33 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="jumbotron">
-            {% if not user.pk is None %}
-                <h4>Hello:{{ user.get_full_name }}</h4>
-                <ul>
-                    <li>Username: {{ user.username }}</li>
-                    <li>Year level: {{ user.userprofile.year_level }}</li>
-                    <li>Major: {{ user.userprofile.major }}</li>
-                    <li>Rating: {{ user.userprofile.rating }}</li>
-                </ul>
-            {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron">
+                {% if not user.pk is None %}
+                    <h4>Hello:{{ user.get_full_name }}</h4>
+                    <ul>
+                        <li>Username: {{ user.username }}</li>
+                        <li>Email: {{ user.email }}</li>
+                        <li>Year level: {{ user.userprofile.year_level }}</li>
+                        <li>Major: {{ user.userprofile.major }}</li>
+                        <li>Rating: {{ user.userprofile.rating }}</li>
+                    </ul>
+                {% endif %}
+            </div>
         </div>
-    </div>
-</div>
 
+        <div class="row">
+            <form class="form-group">
+
+                {{ form.as_p }}
+
+                <button type="submit" class="save btn btn-default">Search</button>
+
+            </form>
+        </div>
+
+    </div>
 
 
 

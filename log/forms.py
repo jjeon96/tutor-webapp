@@ -82,8 +82,31 @@ class ProfileRegistrationFrom(forms.ModelForm):
         ]
 
 
+class UserEditForm(forms.ModelForm):
+    email = forms.EmailField(label='Email address')
+    first_name = forms.CharField(label="First Name")
+    last_name = forms.CharField(label="Last Name")
+
+    class Meta:
+        model = User
+        fields = [
+            'email',
+            'first_name',
+            'last_name',
+        ]
 
 
+
+class ProfileEditForm(forms.ModelForm):
+    major = forms.CharField(widget=forms.Select(choices=COURSE_CHOICES))
+    year_level = forms.CharField(widget=forms.Select(choices=YEAR_LEVEL))
+
+    class Meta:
+        model = UserProfile
+        fields = [
+            'major',
+            'year_level'
+        ]
 
 
 

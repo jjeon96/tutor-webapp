@@ -23,16 +23,16 @@
                 <td>{{ post.course_name }} {{ post.course_number }}</td>
                 <td>{{ post.username }}</td>
                 <td>{{ post.year }}</td>
-
                 <td>{{ post.name }}</td>
+{#                <td>{{ post.user.get_fullname }}</td>#}
                 <td><a href="{% url 'post_detail' pk=post.pk %}"> Detail </a></td>
-
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+    
+    <a class="btn btn-default" href="{% url 'post_filter' %}" id="button_filter">Filter</a>
 
-
-    <a href="{% url 'post_new' %}" class="btn btn-info btn-lg" id="addpost"><span class="glyphicon glyphicon-plus"></span> add new post </a>
+    <a href="{% url 'post_new' %}" class="btn btn-info btn-lg" id="addclass"><span class="glyphicon glyphicon-plus-sign"></span> add new class </a>
 {% endblock %}

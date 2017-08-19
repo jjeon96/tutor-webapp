@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class = "postedit_title">
+    <h1>New post</h1>
+    </div>
+
+    <div class = "postedit_body">
+	    <form class="post-form">
+
+	        {{ form.as_p }}
+
+	        <button type="submit" class="save btn btn-default">Search</button>
+	    </form>
+    </div>
+{% endblock %}
