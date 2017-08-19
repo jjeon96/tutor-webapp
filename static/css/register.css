@@ -15,7 +15,8 @@ hr{
 }
 .content{
 
-	border-left: 1px solid white;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
 
 }
 
@@ -42,8 +43,9 @@ select {
 }
 
 .register-form .btn{
+	color: darkslategray;
 	background-color: transparent;
-	border: 8px solid SpringGreen;
+	border: 8px solid darkslategray;
 
 
 }

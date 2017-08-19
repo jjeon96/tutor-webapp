@@ -4,7 +4,7 @@ table #post_table{
 
 
 .table tbody tr:hover td, .table tbody tr:hover th {
-    background-color: brown;
+    background-color: cornflowerblue;
 }
 
 
@@ -13,15 +13,25 @@ table #post_table{
 	border-bottom: 1px solid white;
 }
 
-#addclass{
+#addpost{
 	
 	float: right;
 	margin-right: 20px;
 	font-size:15px;
+	color: black;
+	background-color: white;
+	border-color: slategray;
+	padding:20px;
 }
 
 
 
 #button_filter {
     margin-left: 20px;
+    padding:20px;
+    border-color:white;
+}
+
+#post_detail{
+	color: coral;
 }

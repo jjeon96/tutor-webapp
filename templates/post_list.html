@@ -24,16 +24,16 @@
                 <td>{{ post.username }}</td>
                 <td>{{ post.year }}</td>
                 <td>n/a</td>
-{#                <td>{{ post.user.get_fullname }}</td>#}
-                <td><a href="{% url 'post_detail' pk=post.pk %}"> Detail </a></td>
+                {# <td>{{ post.user.get_fullname }}</td>#}
+                <td> <a href="{% url 'post_detail' pk=post.pk %}" id= "post_detail"> Detail </a></td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
     
-    <a class="btn btn-default" href="{% url 'post_filter' %}" id="button_filter">Filter</a>
+    <a class="btn btn-default" href="{% url 'post_filter' %}" id="button_filter"> Advanced </br> Filter</a>
     
 
-    <a href="{% url 'post_new' %}" class="btn btn-info btn-lg" id="addclass"><span class="glyphicon glyphicon-plus-sign"></span> add new class </a>
+    <a href="{% url 'post_new' %}" class="btn btn-info btn-lg" id="addpost"><span class="glyphicon glyphicon-plus"></span> add new post </a>
 {% endblock %}
