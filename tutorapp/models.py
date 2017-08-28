@@ -1,6 +1,7 @@
 from django.db import models
 from .course_list import COURSE_CHOICES
 from django.utils import timezone
+from log.models import UserProfile
 
 
 # Create your models here.
@@ -22,4 +23,9 @@ class Post(models.Model):
         self.save()
 
     def __str__(self):
-        return "Date: " + str(self.created_at.date()) + " " + self.name + " Year:" + str(self.year)
+        if self.userpk == 'error':
+            return "Invalid Post: No userpk"
+        user = UserProfile.objects.get(pk=self.userpk)
+        name = user.user.username
+        year = user.get_year_level_display()
+        return "Date: " + str(self.created_at.date()) + " " + name + " Year:" + str(year)
