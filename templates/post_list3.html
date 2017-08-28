@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if message %}
+        <div class=""><p>{{ message }}</p></div>
+    {% endif %}
+    <div>
+        <table class="table table-hover"  id= "post_table">
+            <thead>
+            <tr>
+                <th>Created Date</th>
+                <th>Course</th>
+                <th>User Name</th>
+                <th>Year</th>
+                <th>Name</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                <td>{{ post.created_at }}</td>
+                <td>{{ post.course_name }} {{ post.course_number }}</td>
+                <td>{{ post.username }}</td>
+                <td>{{ post.year }}</td>
+
+                <td>{{ post.name }}</td>
+                <td><a href="{% url 'post_detail' pk=post.pk %}"> Detail </a></td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div id="myModalLogin" class="modal fade" role="dialog">
+            <div class = "modal-dialog">
+                  <div class="modal-content login">
+                      <div class = "modal-body">
+                      
+
+
+                      
+                         <div class = "login-panel panel">
+                            <div class = "panel-heading">
+                                <h3 class = "panel-title modal-login"> Sign In to Continue </h3>
+                            </div>
+                            <div class = "panel-body">
+
+                              <form action="{% url 'login' %}" method="post" class = "modal-login">
+                                {% csrf_token %}
+                                <table>
+                                    <tr> <td> <label for = "id_username">
+                                        Username: </label> </td></tr>
+
+                                    <tr> <td><input type = "text" name = "username" required id = "id_username"></td></tr>
+
+                                    <tr> <td> <label for ="id_password"> Password: </label></td></tr>
+
+                                    <tr><td><input type = "password" name = "password" required id = "id_password"> </td></tr>
+
+                                </table>
+
+                                </br>
+                                <div class="btn-modal-login">
+                                 <input class="btn btn-success btn-sm " id = "modalbutton" type="submit" value="login" />
+
+                                 </div >
+
+                                <a href="{% url 'register' %}" class="btn btn-modal-register "> Register </a>
+
+                                     <input type="hidden" name="next" value="{{ next }}" />
+                        
+                                </form>
+
+                                
+                            
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <a href="{% url 'post_new' %}" class="btn btn-info btn-lg" id="addpost"><span class="glyphicon glyphicon-plus"></span> add new post </a>
+{% endblock %}
+

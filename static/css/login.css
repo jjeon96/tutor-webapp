@@ -1,5 +1,5 @@
 *{
-	font-family: "Poiret One", "Questrial", "Arial", "sans-serif";
+	font-family: "Poiret One", "Questrial", "Arial", "sans-serif" ; 
 }
 
 body{
@@ -22,6 +22,7 @@ html{
 .navbar{
 	background-color: white;
 	border-radius: 0;
+	margin: 0;
 
 }
 

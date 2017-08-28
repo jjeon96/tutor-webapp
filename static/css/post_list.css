@@ -24,14 +24,46 @@ table #post_table{
 	padding:20px;
 }
 
+#modalbutton{
+	display:inline-block;
+}
 
-
-#button_filter {
+/*#button_filter {
     margin-left: 20px;
     padding:20px;
     border-color:white;
-}
+}*/
 
 #post_detail{
 	color: coral;
+}
+
+.modal-login{
+	display:inline-flex;
+}
+
+.btn-modal-login{
+	margin-left: 30px;
+}
+
+.btn-modal-login, .btn-modal-register{
+	
+	display: flex;
+}
+
+.btn-modal-register{
+	margin-left: 5px;
+	padding-top: 40px;
+	padding-left :20px;
+	padding-right:20px;
+	border:1px solid;
+}
+
+div.modal-content.login{
+	width: 70%;
+	left:15%;
+}
+
+h3.panel-title.modal-login{
+	font-size:120%;
 }

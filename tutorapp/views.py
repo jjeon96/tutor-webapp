@@ -30,8 +30,7 @@ def post_list(request):
 def post_detail(request, pk):
     if request.user.pk is None:
         posts = Post.objects.all()
-        return render(request, 'post_list.html',
-                      {'message': "Please Login or Register to look at details of the Post", 'posts': posts})
+        return render(request, 'post_list3.html')
     else:
         post = get_object_or_404(Post, pk=pk)
         return render(request, 'post_detail.html', {'post': post})
@@ -56,8 +55,7 @@ def post_new(request):
             form = PostForm()
     else:
         posts = Post.objects.all()
-        return render(request, 'post_list.html',
-                      {'message': "Please Login or Register to create new posts", 'posts': posts})
+        return render(request, 'post_list3.html', {'posts': posts})
     return render(request, 'post_edit.html', {'form': form})
 
 
