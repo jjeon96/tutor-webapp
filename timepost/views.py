@@ -2,12 +2,8 @@ from django.shortcuts import render
 from .models import Timepost
 from log.models import UserProfile
 from tutorapp.models import Post
-from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .forms import TimepostForm
-
-
-# Create your views here.
 
 
 def timepost_create(request):
@@ -21,8 +17,8 @@ def timepost_create(request):
 
         timepost = TimepostForm(request or None)
         timepost['student_username'] = student_username
-        timepost['tutor_pk'] = tutor_pk
-        timepost['course_name'] = course_name
+        # timepost.tutor_pk = tutor_pk
+        # timepost['course_name'] = course_name
         timepost['course_number'] = course_number
         timepost['days'] = days
         timepost['start_time'] = start_time
