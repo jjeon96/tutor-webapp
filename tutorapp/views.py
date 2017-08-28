@@ -33,7 +33,12 @@ def post_detail(request, pk):
         return render(request, 'post_list3.html')
     else:
         post = get_object_or_404(Post, pk=pk)
-        return render(request, 'post_detail.html', {'post': post})
+        if post.userpk == 'error':
+            referer = request.META.get('HTTP_REFERER', '')
+            return redirect(referer)
+        author = get_object_or_404(UserProfile, pk=post.userpk)
+
+        return render(request, 'post_detail.html', {'post': post, 'author': author})
 
 
 # TODO: posting should be valid only when user is logged in
@@ -45,6 +50,7 @@ def post_new(request):
                 post = form.save(commit=False)
 
                 post.username = request.user
+                post.userpk = request.user.pk
                 curr_user = UserProfile.objects.get(user=request.user)
                 post.name = request.user.first_name + request.user.last_name
                 post.year = curr_user.year_level
@@ -66,6 +72,8 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save(commit=False)
 
+            if post.userpk == 'error':
+                post.userpk = request.user.pk
             curr_user = UserProfile.objects.get(user=request.user)
             post.name = request.user.first_name + " " + request.user.last_name
             post.year = curr_user.year_level
@@ -80,7 +88,7 @@ def post_edit(request, pk):
 def my_post(request):
     # TODO: Shoud do something with query
     posts = Post.objects.all()
-    posts = posts.filter(username=request.user).order_by('-updated_at')
+    posts = posts.filter(userpk=request.user.pk).order_by('-updated_at')
     return render(request, 'post_list.html', {'posts': posts})
 
 

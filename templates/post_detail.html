@@ -11,15 +11,24 @@
                 </div>
 
                 <div class="post-detail panel-body">
-                    UserName: {{ post.username }}<br>
-                    Name: {{ post.name }}<br>
-
-                    Year: {{ post.year }}<br>
+                    {% if author.pk != 'error' %}
+                    UserName: {{ author.user.get_username }}<br>
+                    Name: {{ author.user.get_full_name }}<br>
+                    Year: {{ author.get_year_level_display }}<br>
+                    Major: {{ author.get_major_display }}<br>
                     Course: {{ post.course_name }} {{ post.course_number }}<br>
                     Start At: {{ post.start_at }}<br>
                     End At: {{ post.end_at }}<br>
                     Comment: {{ post.comment }} <br>
+
+                    {% else %}
+                    Invalid operation
+
+                    {% endif %}
                 </div>
+
+
+
 
 
 
