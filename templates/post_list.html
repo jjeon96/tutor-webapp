@@ -17,15 +17,14 @@
             </tr>
             </thead>
             <tbody>
-            {% for post in posts %}
+            {% for pair in posts %}
                 <tr>
-                <td>{{ post.created_at }}</td>
-                <td>{{ post.course_name }} {{ post.course_number }}</td>
-                <td>{{ post.username }}</td>
-                <td>{{ post.year }}</td>
-
-                <td>{{ post.name }}</td>
-                <td><a href="{% url 'post_detail' pk=post.pk %}"> Detail </a></td>
+                <td>{{ pair.post.created_at }}</td>
+                <td>{{ pair.post.course_name }} {{ post.course_number }}</td>
+                <td>{{ pair.author.user.get_username }}</td>
+                <td>{{ pair.author.get_year_level_display }}</td>
+                <td>{{ pair.author.user.get_full_name }}</td>
+                <td><a href="{% url 'post_detail' pk=pair.post.pk %}"> Detail </a></td>
 
                 </tr>
             {% endfor %}

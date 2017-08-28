@@ -24,7 +24,12 @@ def update(request):
 
 def post_list(request):
     posts = Post.objects.all().order_by('-updated_at')
-    return render(request, 'post_list.html', {'posts': posts})
+    pairs = []
+    for post in posts:
+        author = get_object_or_404(UserProfile, pk=post.userpk)
+        pairs.append({'post': post, 'author': author})
+
+    return render(request, 'post_list.html', {'posts': pairs})
 
 
 def post_detail(request, pk):
@@ -48,13 +53,7 @@ def post_new(request):
             form = PostForm(request.POST)
             if form.is_valid():
                 post = form.save(commit=False)
-
-                post.username = request.user
                 post.userpk = request.user.pk
-                curr_user = UserProfile.objects.get(user=request.user)
-                post.name = request.user.first_name + request.user.last_name
-                post.year = curr_user.year_level
-                post.major = curr_user.major
                 post.save()
                 return redirect('post_detail', pk=post.pk)
         else:
@@ -71,13 +70,8 @@ def post_edit(request, pk):
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-
             if post.userpk == 'error':
                 post.userpk = request.user.pk
-            curr_user = UserProfile.objects.get(user=request.user)
-            post.name = request.user.first_name + " " + request.user.last_name
-            post.year = curr_user.year_level
-            post.major = curr_user.major
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
