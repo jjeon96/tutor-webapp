@@ -7,9 +7,13 @@
     
     <div class = "postedit_body">
 	    <form method="POST" class="post-form">
-	    	{% csrf_token %}
-	        {{ form.as_p }}
-            
+            <div class="newPostDetail">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="save btn btn-default" id="newPostNext">Next</button>
+            </div>
+
+
 
             <div class = "postedit">
 
@@ -79,11 +83,13 @@
             		
                 </div>
 
-                </div>
+            <button class="save btn btn-default" id="backToDetail">Back</button>
+            <button type="submit" class="save btn btn-default" id="newPostSave">Save</button>
+            </div>
 
 
 
-	        <button type="submit" class="save btn btn-default">Save</button>
+
 	    </form>
     </div>
 {% endblock %}

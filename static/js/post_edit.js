@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('.postedit').hide();
 	$('.timepicker').timepicker({
 	    timeFormat: 'h:mm p',
 	    interval: 60,
@@ -43,5 +44,17 @@ $(document).ready(function(){
 
   $('#mondaystart').on('change', checkDates);
   $('#mondayend').on('change', checkDates);
+
+
+  $('#newPostNext').on('click',function(){
+        $('.postedit').show();
+        $('.newPostDetail').css('display', 'none');
+  });
+
+  $('.backToDetail').on('click',function(){
+      console.log("clicke");
+      $('.newPostDetail').hide();
+      $('.postedit').hide();
+  });
 });
 
