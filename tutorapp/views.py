@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm, SearchForm
 from log.models import UserProfile
+from django.db import models
+from django.contrib.auth.models import User
 import random
 from django.utils import timezone
 

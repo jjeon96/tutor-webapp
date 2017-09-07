@@ -5,8 +5,8 @@ class TimepostForm(forms.ModelForm):
     class Meta:
         model = Timepost
         fields = ['student_username',
-                  # 'tutor_pk,'
-                  # 'course_name',
+                  'tutor_pk',
+                  'course_name',
                   'course_number',
                   'days',
                   'start_time',

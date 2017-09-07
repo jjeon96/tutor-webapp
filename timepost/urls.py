@@ -5,4 +5,5 @@ from . import views
 
 urlpatterns = [
     url(r'^ajax/timepost_create/$', views.timepost_create, name='timepost_create'),
+
 ]
