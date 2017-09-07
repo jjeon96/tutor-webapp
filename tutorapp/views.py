@@ -37,7 +37,7 @@ def post_detail(request, pk):
         return render(request, 'post_list3.html')
     else:
         post = get_object_or_404(Post, pk=pk)
-        if post.userpk == 'error':
+        if post.userpk == -1:
             referer = request.META.get('HTTP_REFERER', '')
             return redirect(referer)
         author = get_object_or_404(UserProfile, pk=post.userpk)
