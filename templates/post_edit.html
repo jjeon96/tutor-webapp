@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class = "postedit_title">
+    <h1>New post</h1>
+    </div>
+    
+    <div class = "postedit_body">
+	    <form method="POST" class="post-form">
+            <div class="newPostDetail">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="save btn btn-default" id="newPostNext">Next</button>
+            </div>
+
+
+
+            <div class = "postedit">
+
+            	<div id = "Availability">
+
+            	<h5> Availability: </h5>
+
+            	</div>
+            	
+            	<div class = "checkbox">
+            		 <label id = "monday" ><input type="checkbox" value="" > MONDAY</label>
+
+            		 <input class="timepicker text-center"  jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="start time" id = "mondaystart">
+
+            		<input class="timepicker text-center" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="end time" id = "mondayend">
+            		
+            	</div>
+            	<div class = "checkbox">
+            		<label id = "tuesday"><input type="checkbox" value=""  > TUESDAY</label>
+
+
+
+            		<input class="timepicker text-center"  jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="start time">
+
+            		<input class="timepicker text-center" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="end time">
+            		
+            		 
+            	</div>
+            	<div class = "checkbox">
+            		 <label id = "wednesday"><input type="checkbox" value="" > WEDNESDAY</label>
+
+            		 <input class="timepicker text-center"  jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="start time">
+
+            		<input class="timepicker text-center" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="end time">
+            		
+            	</div>
+            	<div class = "checkbox">
+            		 <label id = "thursday"><input type="checkbox" value="" > THURSDAY</label>
+            		 
+            		 <input class="timepicker text-center"  jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="start time">
+
+            		<input class="timepicker text-center" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="end time">
+            		
+            	</div>
+            	<div class = "checkbox">
+            		 <label id = "friday"><input type="checkbox" value="" > FRIDAY</label>
+            		
+            		<input class="timepicker text-center"  jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="start time">
+
+            		<input class="timepicker text-center" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="end time">
+            		
+            	</div>
+            	<div class = "checkbox">
+            		 <label id = "saturday"><input type="checkbox" value="" > SATURDAY</label>
+            		
+            		<input class="timepicker text-center"  jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="start time">
+
+            		<input class="timepicker text-center" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="end time">
+            		
+            	</div>
+            	<div class = "checkbox">
+            		 <label id= "sunday"><input type="checkbox" value="" > SUNDAY</label>
+            		 
+            		 <input class="timepicker text-center"  jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="start time">
+
+            		<input class="timepicker text-center" jt-timepicker="" time="model.time" time-string="model.timeString" default-time="model.options.defaultTime" time-format="model.options.timeFormat" start-time="model.options.startTime" min-time="model.options.minTime" max-time="model.options.maxTime" interval="model.options.interval" dynamic="model.options.dynamic" scrollbar="model.options.scrollbar" dropdown="model.options.dropdown" placeholder="end time">
+            		
+                </div>
+
+            <button class="save btn btn-default" id="backToDetail">Back</button>
+            <button type="submit" class="save btn btn-default" id="newPostSave">Save</button>
+            </div>
+
+
+
+
+	    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+          <div class = "col-container">
+            <div class="col-md-6">
+                <div class = "jumbotron">
+                {% if not user.pk is None %}
+                    <h4>Hello:{{ user.get_full_name }}</h4>
+                    <ul>
+                        <li>Username: {{ user.username }}</li>
+                        <li>Email: {{ user.email }}</li>
+                        <li>Year level: {{ user.userprofile.year_level }}</li>
+                        <li>Major: {{ user.userprofile.major }}</li>
+                        <li>Rating: {{ user.userprofile.rating }}</li>
+                    </ul>
+
+                {% else %}
+                   
+
+                    <h4> Welcome to MentorUs </h4>  
+                    <h5> <i> "your instant access to the nearest tutor" </i> </h5>
+                    </br>
+                    </br>
+
+
+                     <a href="{% url 'login' %}" class="btn btn-md"> Login </a>
+
+                    <a href="{% url 'register' %}" class="btn btn-md "> Register </a>
+
+                {% endif %}
+
+                
+                
+            </div>
+            </div>
+
+            <div class="col-md-6">
+                <form class="form-group">
+
+                {{ form.as_p }}
+
+                <button type="submit" class="save btn btn-default"><span class="glyphicon glyphicon-search" > </span> Search</button>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+.postedit_body{
+	margin-left: 40px;
+	margin-top: 40px;
+}
+
+.postedit_title{
+	margin-left: 40px;
+}
+
+.checkbox{
+	display:flex;
+}
+
+h5{
+	font-family: "Poiret One", "Questrial", "Arial", "sans-serif";
+	margin-top: 20px;
+	margin-bottom: 10px;
+
+}
+
+.timepicker{
+	margin-right: 20px;
+}

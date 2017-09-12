@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if message %}
+        <div class=""><p>{{ message }}</p></div>
+    {% endif %}
+    <div>
+        <table class="table table-hover"  id= "post_table">
+            <thead>
+            <tr>
+                <th>Created Date</th>
+                <th>Course</th>
+                <th>User Name</th>
+                <th>Year</th>
+                <th>Name</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                <td>{{ post.created_at }}</td>
+                <td>{{ post.course_name }} {{ post.course_number }}</td>
+                <td>{{ post.username }}</td>
+                <td>{{ post.year }}</td>
+                <td>{{ post.name }}</td>
+{#                <td>{{ post.user.get_fullname }}</td>#}
+                <td><a href="{% url 'post_detail' pk=post.pk %}"> Detail </a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <a class="btn btn-default" href="{% url 'post_filter' %}" id="button_filter">Filter</a>
+
+    <a href="{% url 'post_new' %}" class="btn btn-info btn-lg" id="addclass"><span class="glyphicon glyphicon-plus-sign"></span> add new class </a>
+{% endblock %}

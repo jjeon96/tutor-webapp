@@ -1,0 +1,57 @@
+
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    <div class = "post-detail-body">
+            <div class="panel-detail panel-default" >
+                <div class="post-detail panel-heading" >
+                    Created at: {{ post.created_at }}
+                </div>
+
+                <div class="post-detail panel-body">
+                    {% if author.pk != 'error' %}
+                    UserName: {{ author.user.get_username }}<br>
+                    Name: {{ author.user.get_full_name }}<br>
+                    Year: {{ author.get_year_level_display }}<br>
+                    Major: {{ author.get_major_display }}<br>
+                    Course: {{ post.course_name }} {{ post.course_number }}<br>
+                    Start At: {{ post.start_at }}<br>
+                    End At: {{ post.end_at }}<br>
+                    Comment: {{ post.comment }} <br>
+
+                    {% else %}
+                    Invalid operation
+
+                    {% endif %}
+                </div>
+
+
+
+
+
+
+                <button type = "button" class = "btn email" data-toggle="modal" data-target="#myModalPostDetail"">Send Email</button>
+
+             </div>
+
+             </div>
+
+                <div id="myModalPostDetail" class="modal fade" role="dialog">
+                    <div class = "modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class = "modal-body">
+                              <h4 class = "modal-post-detail-title"> Send Email to the tutor? </h4>
+                            </div>
+                            <div class = "modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class = "glyphicon glyphicon-remove"></span></button>
+                                <button type="button" class="btn btn-primary"><span class = "glyphicon glyphicon-send"></span></button>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-info btn-lg" id="editclass"><span class="glyphicon glyphicon-pencil"></span> edit class </a>
+   
+{% endblock %}
