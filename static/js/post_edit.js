@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('.postedit').hide();
+    $('.postedit').hide().prop('required',false);
 	$('.timepicker').timepicker({
 	    timeFormat: 'h:mm p',
 	    interval: 60,
@@ -48,13 +48,16 @@ $(document).ready(function(){
 
   $('#newPostNext').on('click',function(){
         $('.postedit').show();
-        $('.newPostDetail').css('display', 'none');
+        $('.newPostDetail').hide().prop('required',false);
+        console.log("next has been pressed");
   });
 
-  $('.backToDetail').on('click',function(){
-      console.log("clicke");
-      $('.newPostDetail').hide();
-      $('.postedit').hide();
-  });
+  $('.postedit')
+
+  // $('.backToDetail').on('click',function(){
+  //     $('.newPostDetail').show();
+  //     $('.postedit').hide().prop('required',false);
+  //     console.log("back has been pressed");
+  // });
 });
 
