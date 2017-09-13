@@ -107,7 +107,6 @@ $(document).ready(function(){
           } else {
               console.log("Time Validation has failed");
           }
-
       });
   });
 
