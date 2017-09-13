@@ -3,10 +3,7 @@ from .models import Post
 from .forms import PostForm, SearchForm
 from log.models import UserProfile
 from django.http import Http404
-from django.db import models
-from django.contrib.auth.models import User
-import random
-from django.utils import timezone
+from urllib.parse import urlparse
 
 
 # Create your views here.
@@ -126,11 +123,13 @@ def home(request):
 
 
 def post_delete(request, pk, prev):
-    if request.user.pk is not Post.objects.get(pk=pk).userpk:
-        raise Http404("Unahthorized action")
     target_post = get_object_or_404(Post, pk=pk)
+    if str(request.user.pk) != target_post.userpk:
+        raise Http404("Unahthorized action")
+
     target_post.delete()
-    return redirect(prev)
+    prev = urlparse(prev)
+    return redirect(prev.path)
 
 
 def pair_creator(request, posts):
