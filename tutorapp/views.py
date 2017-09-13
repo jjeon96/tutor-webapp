@@ -123,6 +123,7 @@ def home(request):
 
 
 def post_delete(request, pk, prev):
+    # TODO: Python ~2.7 does NOT support urlparse
     target_post = get_object_or_404(Post, pk=pk)
     if str(request.user.pk) != target_post.userpk:
         raise Http404("Unahthorized action")

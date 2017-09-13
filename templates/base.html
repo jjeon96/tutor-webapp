@@ -58,19 +58,23 @@
                                         <a href="/register">Register</a>
                                     </li>
                                 {% endif %}
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="/post">Post List</a>
-                                </li>
                                 {% if not user.pk is None %}
 
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="/update">Update Profile</a>
+                                        <a href="/post_new">Add New Post</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                    <a href="/post">Post List</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
                                         <a href="{% url 'my_post' %}">My Posts</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="/update">Update Profile</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
