@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^my_post/$', views.my_post, name='my_post'),
     url(r'^post/new/$', views.post_new, name='post_new'),
     url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
+    url(r'^post/(?P<pk>\d+)/delete/prev=(?P<prev>.+)/$', views.post_delete, name='post_delete'),
     url(r'^search/$', views.post_search, name='post_search'),
     url(r'^\?q=(?P<query_search>\w+)$', views.search_result, name='search_result'),
     # url(r'^admin/', admin.site.urls),

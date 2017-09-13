@@ -2,10 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm, SearchForm
 from log.models import UserProfile
-from django.db import models
-from django.contrib.auth.models import User
-import random
-from django.utils import timezone
+from django.http import Http404
+from urllib.parse import urlparse
 
 
 # Create your views here.
@@ -26,21 +24,21 @@ def update(request):
 
 def post_list(request):
     posts = Post.objects.all().order_by('-updated_at')
-    pairs = []
-    for post in posts:
-        author = get_object_or_404(UserProfile, pk=post.userpk)
-        pairs.append({'post': post, 'author': author})
+    pairs = pair_creator(request, posts)
 
     return render(request, 'post_list.html', {'posts': pairs})
 
 
 def post_detail(request, pk):
+
+
+
     if request.user.pk is None:
         posts = Post.objects.all()
         return render(request, 'post_list3.html')
     else:
         post = get_object_or_404(Post, pk=pk)
-        if post.userpk == 'error':
+        if post.userpk == -1:
             referer = request.META.get('HTTP_REFERER', '')
             return redirect(referer)
         author = get_object_or_404(UserProfile, pk=post.userpk)
@@ -82,27 +80,32 @@ def post_edit(request, pk):
 
 
 def my_post(request):
-    # TODO: Shoud do something with query
-    posts = Post.objects.all()
-    posts = posts.filter(userpk=request.user.pk).order_by('-updated_at')
-    return render(request, 'post_list.html', {'posts': posts})
+
+    pairs = []
+    author = get_object_or_404(UserProfile, pk=request.user.pk)
+    posts = Post.objects.filter(userpk=request.user.pk).order_by('-updated_at')
+    for post in posts:
+        pairs.append({'post': post, 'author': author})
+
+    return render(request, 'post_list.html', {'posts': pairs})
 
 
 def post_search(request):
     if request.GET.__len__() != 0:
         form = SearchForm(request.GET)
         if form.is_valid():
-            posts = Post.objects.all()
             query = request.GET
-            posts = posts.filter(course_name=query.get('course_name'), course_number=query.get('course_number'))
-            return render(request, 'post_list.html', {'posts': posts})
+            posts = Post.objects.filter(course_name=query.get('course_name'), course_number=query.get('course_number'))
+            pairs = pair_creator(request, posts)
+            return render(request, 'post_list.html', {'posts': pairs})
     else:
         form = SearchForm()
     return render(request, 'post_search.html', {'form': form})
 
 
 def search_result(request, posts):
-    return render(request, 'post_list.html', {'posts': posts})
+    pairs = pair_creator(request, posts)
+    return render(request, 'post_list.html', {'posts': pairs})
 
 
 def home(request):
@@ -112,7 +115,26 @@ def home(request):
             posts = Post.objects.all()
             query = request.GET
             posts = posts.filter(course_name=query.get('course_name'), course_number=query.get('course_number'))
-            return render(request, 'post_list.html', {'posts': posts})
+            pairs = pair_creator(request, posts)
+            return render(request, 'post_list.html', {'posts': pairs})
     else:
         form = SearchForm()
     return render(request, 'home.html', {'form': form})
+
+
+def post_delete(request, pk, prev):
+    target_post = get_object_or_404(Post, pk=pk)
+    if str(request.user.pk) != target_post.userpk:
+        raise Http404("Unahthorized action")
+
+    target_post.delete()
+    prev = urlparse(prev)
+    return redirect(prev.path)
+
+
+def pair_creator(request, posts):
+    pairs = []
+    for post in posts:
+        author = get_object_or_404(UserProfile, pk=post.userpk)
+        pairs.append({'post': post, 'author': author})
+    return pairs

@@ -25,7 +25,7 @@ SECRET_KEY = '#1q517a34470&z0a2v7x1#kg_-3=iu&(vmzjmr1@y$pz9$90ir'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'http://rostradamus.pythonanywhere.com/',]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'rostradamus.pythonanywhere.com',]
 
 
 # Application definition
@@ -74,6 +74,9 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_DIRS = ['os.path.join(BASE_DIR, "templates")',]
+
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
