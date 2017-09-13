@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm, SearchForm
 from log.models import UserProfile
+from django.http import Http404
 from django.db import models
 from django.contrib.auth.models import User
 import random
@@ -32,6 +33,9 @@ def post_list(request):
 
 
 def post_detail(request, pk):
+
+
+
     if request.user.pk is None:
         posts = Post.objects.all()
         return render(request, 'post_list3.html')
@@ -79,7 +83,6 @@ def post_edit(request, pk):
 
 
 def my_post(request):
-    # TODO: Shoud do something with query
 
     pairs = []
     author = get_object_or_404(UserProfile, pk=request.user.pk)
@@ -120,6 +123,14 @@ def home(request):
     else:
         form = SearchForm()
     return render(request, 'home.html', {'form': form})
+
+
+def post_delete(request, pk, prev):
+    if request.user.pk is not Post.objects.get(pk=pk).userpk:
+        raise Http404("Unahthorized action")
+    target_post = get_object_or_404(Post, pk=pk)
+    target_post.delete()
+    return redirect(prev)
 
 
 def pair_creator(request, posts):
