@@ -16,7 +16,8 @@
                         <li>Major: {{ user.userprofile.major }}</li>
                         <li>Rating: {{ user.userprofile.rating }}</li>
                     </ul>
-                    <a href="{% url 'post_new' %}"><span class="glyphicon glyphicon-plus"></span> ADD TUTOR </a>
+
+                    <a href="{% url 'post_new' %}" class="btn btn-info btn-lg" id="addpost"><span class="glyphicon glyphicon-plus"></span> add new tutor </a>
 
 
                 {% else %}
