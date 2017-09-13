@@ -1,18 +1,7 @@
 $(document).ready(function(){
-    $('.postedit').hide().prop('required',false);
-	$('.timepicker').timepicker({
-	    timeFormat: 'h:mm p',
-	    interval: 60,
-	    minTime: '8',
-	    maxTime: '10:00pm',
-	    startTime: '8:00am',
-	    dynamic: true,
-	    dropdown: true,
-	    scrollbar: true,
-
-
-
-    });
+    var tutorAvailTime = [];
+    var numOfTimeObjects = 0;
+    // $('.postedit_time').hide();
 
 
 
@@ -42,22 +31,56 @@ $(document).ready(function(){
 
   }
 
-  $('#mondaystart').on('change', checkDates);
-  $('#mondayend').on('change', checkDates);
+  function validateTime(startTime, endTime) {
+      if ((startTime == -1) || (endTime == -1)) {
+      alert("Start or end time it's not valid");
+    }
 
+    if (startTime > endTime) {
+      alert('Start time should be lower than end time');
+    }
+  }
 
-  $('#newPostNext').on('click',function(){
-        $('.postedit').show();
-        $('.newPostDetail').hide().prop('required',false);
-        console.log("next has been pressed");
+  $(".add_tutor_time").on('click',function() {
+      numOfTimeObjects++;
+      var domClass = "avail_time" + numOfTimeObjects;
+      var startTimeId = "time_start_" + numOfTimeObjects;
+      var endTimeId = "time_end_" + numOfTimeObjects;
+      var daysofweekClass = "daysofweek" + numOfTimeObjects;
+      $("#Availability").append("<div class='" + domClass + "'>" +
+                        "<label><input type='text' value='Day of Week' class='"+daysofweekClass+"'></label>" +
+                        "<input class='timepicker text-center'  jt-timepicker='' time='model.time' time-string='model.timeString' default-time='model.options.defaultTime' time-format='model.options.timeFormat' start-time='model.options.startTime' min-time='model.options.minTime' max-time='model.options.maxTime' interval='model.options.interval' dynamic='model.options.dynamic' scrollbar='model.options.scrollbar' dropdown='model.options.dropdown' placeholder='start time' id = '"+startTimeId+"'>" +
+                        "<input class='timepicker text-center' jt-timepicker='' time='model.time' time-string='model.timeString' default-time='model.options.defaultTime' time-format='model.options.timeFormat' start-time='model.options.startTime' min-time='model.options.minTime' max-time='model.options.maxTime' interval='model.options.interval' dynamic='model.options.dynamic' scrollbar='model.options.scrollbar' dropdown='model.options.dropdown' placeholder='end time' id = '"+endTimeId+"'>" +
+                        "<button class='tutor_time_save'>Save</button>"+
+                        "<button class='tutor_time_edit'>Edit</button>"+
+                        "<button class='tutor_time_delete'>Delete</button>"+
+                        "<div><br>");
+      $('.timepicker').timepicker({
+          timeFormat: 'h:mm p',
+          interval: 60,
+          minTime: '8',
+          maxTime: '10:00pm',
+          startTime: '8:00am',
+          dynamic: true,
+          dropdown: true,
+          scrollbar: true,
+      });
+
+      $(".tutor_time_edit").hide();
+      $(".tutor_time_delete").hide();
+      $(".tutor_time_save").on("click", function() {
+          var parentDiv = $(this).parent();
+          var parentDivClass = parentDiv.attr("class");
+          var startTime = $("#" +startTimeId).val();
+          var endTime = $("#"+endTimeId).val();
+          var dayOfWeek = $("."+daysofweekClass).val();
+          console.log("hello " +  parentDivClass + " start time is " + startTime + " end time is " + endTime);
+          validateTime(timeToInt(startTime), timeToInt(endTime));
+      });
   });
 
-  $('.postedit')
 
-  // $('.backToDetail').on('click',function(){
-  //     $('.newPostDetail').show();
-  //     $('.postedit').hide().prop('required',false);
-  //     console.log("back has been pressed");
-  // });
+
+
 });
 
