@@ -22,11 +22,11 @@ def update(request):
 # def logout(request):
 # 	return render(request, 'tutorapp/stub.html', {})
 
-def post_list(request):
-    posts = Post.objects.all().order_by('-created_at')
-    pairs = pair_creator(request, posts)
-
-    return render(request, 'post_list.html', {'posts': pairs})
+# def post_list(request):
+#     posts = Post.objects.all().order_by('-created_at')
+#     pairs = pair_creator(request, posts)
+#
+#     return render(request, 'post_list.html', {'posts': pairs})
 
 
 def post_detail(request, pk):
@@ -115,7 +115,8 @@ def home(request):
         if form.is_valid():
             posts = Post.objects.all()
             query = request.GET
-            posts = posts.filter(course_name=query.get('course_name'))
+            if query.get('course_name') != "":
+                posts = posts.filter(course_name=query.get('course_name'))
             if query.get('course_number') != "":
                 posts = posts.filter(course_number=query.get('course_number'))
             if query.get('created_date_order') is None or query.get('created_date_order') == '-created_at':

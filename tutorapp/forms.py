@@ -18,6 +18,6 @@ class SearchForm(forms.Form):
     # TODO: Search form must be specified
     CREATED_ORDER_CHOICE = (('-created_at', 'Most Recent',), ('created_at', 'Oldest'),)
 
-    course_name = forms.ChoiceField(required=False, choices=COURSE_CHOICES)
+    course_name = forms.ChoiceField(required=False, choices=(('', '-----'),) + COURSE_CHOICES)
     course_number = forms.IntegerField(required=False)
-    created_date_order = forms.ChoiceField(required=False, widget=forms.RadioSelect, choices=CREATED_ORDER_CHOICE,)
+    created_date_order = forms.ChoiceField(required=False, widget=forms.RadioSelect, choices=CREATED_ORDER_CHOICE, )

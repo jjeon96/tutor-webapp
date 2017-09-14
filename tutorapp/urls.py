@@ -18,7 +18,7 @@ urlpatterns = [
     # url(r'^', include("posts.urls", namespace='posts')),
     #url(r'^posts/$', "<appname>.views.<function_name>"),
 
-    url(r'^post/$', views.post_list, name='post_list'),
+    # url(r'^post/$', views.post_list, name='post_list'),
     url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
     url(r'^my_post/$', views.my_post, name='my_post'),
     url(r'^post/new/$', views.post_new, name='post_new'),
