@@ -23,15 +23,17 @@ def update(request):
 # 	return render(request, 'tutorapp/stub.html', {})
 
 def post_list(request):
-    posts = Post.objects.all().order_by('-updated_at')
+    posts = Post.objects.all().order_by('-created_at')
     pairs = pair_creator(request, posts)
 
     return render(request, 'post_list.html', {'posts': pairs})
 
 
 def post_detail(request, pk):
+    # TODO: post_list3.html should be resolved
 
-
+    request
+    temp = urlparse(request.META.get('HTTP_REFERER'))
 
     if request.user.pk is None:
         posts = Post.objects.all()
@@ -80,7 +82,6 @@ def post_edit(request, pk):
 
 
 def my_post(request):
-
     pairs = []
     author = get_object_or_404(UserProfile, pk=request.user.pk)
     posts = Post.objects.filter(userpk=request.user.pk).order_by('-updated_at')
@@ -114,7 +115,13 @@ def home(request):
         if form.is_valid():
             posts = Post.objects.all()
             query = request.GET
-            posts = posts.filter(course_name=query.get('course_name'), course_number=query.get('course_number'))
+            posts = posts.filter(course_name=query.get('course_name'))
+            if query.get('course_number') != "":
+                posts = posts.filter(course_number=query.get('course_number'))
+            if query.get('created_date_order') is None or query.get('created_date_order') == '-created_at':
+                posts = posts.order_by('-created_at')
+            else:
+                posts = posts.order_by('created_at')
             pairs = pair_creator(request, posts)
             return render(request, 'post_list.html', {'posts': pairs})
     else:

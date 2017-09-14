@@ -10,6 +10,7 @@ from log.views import (login_view, register_view, logout_view, update_view)
 from . import views
 
 urlpatterns = [
+
     url(r'^register/', register_view, name='register'),
     url(r'^update/', update_view, name='update'),
     url(r'^login/', login_view, name='login'),

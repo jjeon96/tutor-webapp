@@ -20,7 +20,7 @@
             {% for pair in posts %}
                 <tr>
                 <td>{{ pair.post.created_at }}</td>
-                <td>{{ pair.post.course_name }} {{ post.course_number }}</td>
+                <td>{{ pair.post.course_name }} {{ pair.post.course_number }}</td>
                 <td>{{ pair.author.user.get_username }}</td>
                 <td>{{ pair.author.get_year_level_display }}</td>
                 <td>{{ pair.author.user.get_full_name }}</td>

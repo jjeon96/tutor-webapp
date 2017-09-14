@@ -1,5 +1,5 @@
 from django import forms
-from django.utils import timezone
+from .course_list import COURSE_CHOICES
 from .models import Post
 
 
@@ -14,14 +14,10 @@ class PostForm(forms.ModelForm):
         }
 
 
-class SearchForm(forms.ModelForm):
+class SearchForm(forms.Form):
     # TODO: Search form must be specified
-    class Meta:
-        model = Post
-        fields = ('course_name', 'course_number',)
+    CREATED_ORDER_CHOICE = (('-created_at', 'Most Recent',), ('created_at', 'Oldest'),)
 
-    # def __init__(self, *args, **kwargs):
-    #     super(SearchForm, self).__init__(*args, **kwargs)
-    #     for field_name, field in self.fields.items():
-    #         field.widget.attrs['class'] = 'form-group'
-
+    course_name = forms.ChoiceField(required=False, choices=COURSE_CHOICES)
+    course_number = forms.IntegerField(required=False)
+    created_date_order = forms.ChoiceField(required=False, widget=forms.RadioSelect, choices=CREATED_ORDER_CHOICE,)
