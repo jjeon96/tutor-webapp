@@ -10,6 +10,7 @@ from log.views import (login_view, register_view, logout_view, update_view)
 from . import views
 
 urlpatterns = [
+
     url(r'^register/', register_view, name='register'),
     url(r'^update/', update_view, name='update'),
     url(r'^login/', login_view, name='login'),
@@ -17,11 +18,12 @@ urlpatterns = [
     # url(r'^', include("posts.urls", namespace='posts')),
     #url(r'^posts/$', "<appname>.views.<function_name>"),
 
-    url(r'^post/$', views.post_list, name='post_list'),
+    # url(r'^post/$', views.post_list, name='post_list'),
     url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
     url(r'^my_post/$', views.my_post, name='my_post'),
     url(r'^post/new/$', views.post_new, name='post_new'),
     url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
+    url(r'^post/(?P<pk>\d+)/delete/prev=(?P<prev>.+)/$', views.post_delete, name='post_delete'),
     url(r'^search/$', views.post_search, name='post_search'),
     url(r'^\?q=(?P<query_search>\w+)$', views.search_result, name='search_result'),
     # url(r'^admin/', admin.site.urls),

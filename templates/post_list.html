@@ -20,7 +20,7 @@
             {% for pair in posts %}
                 <tr>
                 <td>{{ pair.post.created_at }}</td>
-                <td>{{ pair.post.course_name }} {{ post.course_number }}</td>
+                <td>{{ pair.post.course_name }} {{ pair.post.course_number }}</td>
                 <td>{{ pair.author.user.get_username }}</td>
                 <td>{{ pair.author.get_year_level_display }}</td>
                 <td>{{ pair.author.user.get_full_name }}</td>
@@ -32,6 +32,59 @@
         </table>
     </div>
 
+{#    TODO: This part should be discussed#}
+{#    {% if not request.user.is_authenticated %}#}
+{#    <div id="myModalLogin" class="modal fade" role="dialog">#}
+{#            <div class = "modal-dialog">#}
+{#                  <div class="modal-content login">#}
+{#                      <div class = "modal-body">#}
+{##}
+{##}
+{##}
+{##}
+{#                         <div class = "login-panel panel">#}
+{#                            <div class = "panel-heading">#}
+{#                                <h3 class = "panel-title modal-login"> Sign In to Continue </h3>#}
+{#                            </div>#}
+{#                            <div class = "panel-body">#}
+{##}
+{#                              <form action="{% url 'login' %}" method="post" class = "modal-login">#}
+{#                                {% csrf_token %}#}
+{#                                <table>#}
+{#                                    <tr> <td> <label for = "id_username">#}
+{#                                        Username: </label> </td></tr>#}
+{##}
+{#                                    <tr> <td><input type = "text" name = "username" required id = "id_username"></td></tr>#}
+{##}
+{#                                    <tr> <td> <label for ="id_password"> Password: </label></td></tr>#}
+{##}
+{#                                    <tr><td><input type = "password" name = "password" required id = "id_password"> </td></tr>#}
+{##}
+{#                                </table>#}
+{##}
+{#                                </br>#}
+{#                                <div class="btn-modal-login">#}
+{#                                 <input class="btn btn-success btn-sm " id = "modalbutton" type="submit" value="login" />#}
+{##}
+{#                                 </div >#}
+{##}
+{#                                <a href="{% url 'register' %}" class="btn btn-modal-register "> Register </a>#}
+{##}
+{#                                     <input type="hidden" name="next" value="{{ next }}" />#}
+{##}
+{#                                </form>#}
+{##}
+{##}
+{##}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    {% endif %}#}
 
-    <a href="{% url 'post_new' %}" class="btn btn-info btn-lg" id="addpost"><span class="glyphicon glyphicon-plus"></span> add new post </a>
+
+
 {% endblock %}

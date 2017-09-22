@@ -9,7 +9,7 @@ from log.models import UserProfile
 
 class Post(models.Model):
 
-    userpk = models.CharField(max_length=100, default='error')
+    userpk = models.IntegerField(default=-1)
 
     course_name = models.CharField(max_length=50, choices=COURSE_CHOICES)
     course_number = models.IntegerField()
@@ -23,8 +23,8 @@ class Post(models.Model):
         self.save()
 
     def __str__(self):
-        if self.userpk == 'error':
-            return "Invalid Post: No userpk"
+        if self.userpk == -1:
+            return "Invalid Post: Unknown User"
         user = UserProfile.objects.get(pk=self.userpk)
         name = user.user.username
         year = user.get_year_level_display()
